@@ -20,3 +20,12 @@ jobs:
 
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
+    
+    - name: create a directory and copy dependency file
+      run: mkdir staging && cp target/*jar-with-dependencies.jar staging
+
+    - name: upload artifact 
+      uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: staging
